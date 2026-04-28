@@ -1,4 +1,6 @@
-﻿file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS "src/*.cpp")
+﻿cmake_minimum_required(VERSION 3.16)
+
+file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS "src/*.cpp")
 file(GLOB_RECURSE HEADER_FILES CONFIGURE_DEPENDS "include/*.h")
 
 add_executable(SBL SBL.cpp ${SRC_FILES} ${HEADER_FILES})

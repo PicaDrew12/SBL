@@ -21,10 +21,11 @@ bool isValidVariableName(std::string& name) {
 bool doesVariableExist(std::string variableName) {
 	auto it = variableMap.find(variableName);
 	if (it == variableMap.end()) {
+    Debug::Error("Variable ", variableName, "dosen't exist" );
 		return false;
 	}
 	else {
-		true;
+  return		true;
 	}
 }
 
@@ -48,7 +49,8 @@ void parseVariable(std::istringstream* cursorPointer) {
 		type = Type::INT;
 		intStorage[variableName] = std::make_unique<int>(interger);
 		dataPointer = intStorage[variableName].get();
-		registerVariable(type, dataPointer, variableName);
+		int code = registerVariable(type, dataPointer, variableName);
+  //  std::cout<<code<<" Asta e "<<std::endl;
 
 	}
 	else if (typeName == "float") {
@@ -145,6 +147,12 @@ void handlePrint(std::istringstream* cursorPointer) {
 				std::cout << *val;
 				}, value);
 		}
+    else if(token[0]=='\"'){
+      std::cout<<"Opa";
+    }
+    else{
+      
+    }
 	}
 }
 
@@ -169,6 +177,9 @@ void parseFile(std::string path) {
 				else if (token == "print") {
 					handlePrint(&cursor);
 				}
+        else if(token == "" || token == " "){
+          continue;
+        }
 				else {
 					Debug::Error("Token ", token, " is not recognized");
 					Abort();

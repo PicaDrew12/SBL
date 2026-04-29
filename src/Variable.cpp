@@ -1,5 +1,6 @@
 #include "Variable.h"
 #include "Mide.h"
+#include "Debug.h"
 Variable::Variable(Type type, void* dataPointer, std::string name,int address) {
 	this->type = type;
 	this->dataPointer = dataPointer;
@@ -8,6 +9,7 @@ Variable::Variable(Type type, void* dataPointer, std::string name,int address) {
 }
 
 int registerVariable(Type type, void* dataPointer, std::string name) {
+
 	variableMap[name] = std::make_unique<Variable>(type, dataPointer, name, addressCounter);
 	return 0;
 }
